@@ -20,7 +20,7 @@ spec:
         app: myapp
     spec:
       containers:
-      - image: us.icr.io/<your SN labs namespace>/myapp:v1
+      - image: us.icr.io/sn-labs-hieunguyentr/myapp:v1
         imagePullPolicy: Always
         name: myapp
         ports:
@@ -31,3 +31,17 @@ spec:
             cpu: 50m
           requests:
             cpu: 20m
+        env:
+        - name: MYAPP_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: myapp-secret
+              key: username
+        - name: MYAPP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: myapp-secret
+              key: password
+
+
+   
